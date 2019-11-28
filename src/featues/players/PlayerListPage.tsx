@@ -3,7 +3,8 @@ import {
   Container,
   CssBaseline,
   makeStyles,
-  Typography
+  Typography,
+  Button
 } from "@material-ui/core";
 import TitleIcon from "@material-ui/icons/AccountCircle";
 import React from "react";
@@ -11,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/reducers";
 import PlayerList from "./PlayerList";
 import { addPlayer, removePlayer } from "./playersSlice";
+import { addRound } from "../round/roundsSlice";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -53,6 +55,15 @@ export default function PlayerListPage() {
               dispatch(addPlayer(name));
             }}
           />
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            disabled={players.length < 2}
+            onClick={() => dispatch(addRound({ players }))}
+          >
+            Start Tournament
+          </Button>
         </div>
       </div>
     </Container>

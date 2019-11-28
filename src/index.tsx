@@ -8,12 +8,7 @@ import store from "./app/store";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: "#212121" },
-    secondary: { main: "#FAFAFA" }
-  }
-});
+const theme = createMuiTheme({});
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>

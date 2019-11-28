@@ -3,13 +3,13 @@ import React from "react";
 import { TableCell, TableRow } from "@material-ui/core";
 
 interface IProps {
-  player: ISBPlayer;
+  pair: [ISBPlayer, ISBPlayer];
 }
 
-export default function RoundListeItem({ player }: IProps) {
+export default function RoundListeItem({ pair: [pl1, pl2] }: IProps) {
   return (
     <TableRow>
-      <TableCell align="right">{player.name}</TableCell>
+      <TableCell align="right">{pl1.name + " vs " + pl2.name}</TableCell>
     </TableRow>
   );
 }

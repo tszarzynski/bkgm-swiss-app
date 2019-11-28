@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RoundListPage() {
   const classes = useStyles();
-  const { players } = useSelector((state: RootState) => state);
+  const { players, rounds } = useSelector((state: RootState) => state);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -42,7 +42,10 @@ export default function RoundListPage() {
           Round
         </Typography>
         <div className={classes.form}>
-          <RoundList players={players} />
+          <RoundList
+            players={players}
+            pairings={rounds[rounds.length - 1] || []}
+          />
         </div>
       </div>
     </Container>
