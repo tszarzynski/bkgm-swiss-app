@@ -9,7 +9,7 @@ interface IProps {
 
 export default function RankingListItem({ player, rank }: IProps) {
   return (
-    <TableRow key={player.name}>
+    <TableRow>
       <TableCell component="th" scope="row">
         {rank}
       </TableCell>

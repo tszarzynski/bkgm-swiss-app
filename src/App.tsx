@@ -1,30 +1,15 @@
+import { Container } from "@material-ui/core";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
-import PlayerList from "./featues/players/PlayerList";
-import { RootState } from "./app/reducers";
-import { addPlayer, removePlayer } from "./featues/players/playersSlice";
-import Header from "./components/Header";
-import RankingList from "./featues/ranking/RankingList";
+import PlayerListPage from "./featues/players/PlayerListPage";
+import RoundListPage from "./featues/round/RoundListPage";
 
 const App: React.FC = () => {
-  const dispatch = useDispatch();
-  const { players } = useSelector((state: RootState) => state);
-
   return (
-    <div>
-      <Header />
-      <PlayerList
-        players={players}
-        removePlayer={(playerID: number) => {
-          dispatch(removePlayer({ playerID }));
-        }}
-        addPlayer={(name: string) => {
-          dispatch(addPlayer(name));
-        }}
-      />
-      <RankingList players={players} />
-    </div>
+    <Container component="main" maxWidth="xs">
+      <PlayerListPage />
+      <RoundListPage />
+    </Container>
   );
 };
 

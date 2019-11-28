@@ -7,26 +7,23 @@ import {
 } from "@material-ui/core";
 import { ISBPlayers } from "bkgm-swiss";
 import React from "react";
-import RankingListItem from "./RankingListItem";
+import RoundListeItem from "./RoundListItem";
 
 interface IProps {
   players: ISBPlayers;
 }
 
-export default function RankingList({ players }: IProps) {
+export default function RoundList({ players }: IProps) {
   return (
     <Table aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell>Rank</TableCell>
           <TableCell align="right">Name</TableCell>
-          <TableCell align="right">Wins</TableCell>
-          <TableCell align="right">Loses</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {players.map((player, index) => (
-          <RankingListItem key={index} rank={index} player={player} />
+          <RoundListeItem key={index} player={player} />
         ))}
       </TableBody>
     </Table>
