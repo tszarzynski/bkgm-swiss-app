@@ -5,6 +5,7 @@ import PlayerList from "./featues/players/PlayerList";
 import { RootState } from "./app/reducers";
 import { addPlayer, removePlayer } from "./featues/players/playersSlice";
 import Header from "./components/Header";
+import RankingList from "./featues/ranking/RankingList";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           dispatch(addPlayer(name));
         }}
       />
+      <RankingList players={players} />
     </div>
   );
 };
