@@ -26,7 +26,7 @@ export default function RankingList({ players }: IProps) {
       </TableHead>
       <TableBody>
         {players.map((player, index) => (
-          <RankingListItem key={index} rank={index} player={player} />
+          <RankingListItem key={index} rank={index + 1} player={player} />
         ))}
       </TableBody>
     </Table>

@@ -2233,7 +2233,7 @@ binary-extensions@^1.0.0:
 
 "bkgm-swiss@https://github.com/tszarzynski/bkgm-swiss.git":
   version "0.0.0"
-  resolved "https://github.com/tszarzynski/bkgm-swiss.git#34845220fd797443e9a7b790db190b7c320b6889"
+  resolved "https://github.com/tszarzynski/bkgm-swiss.git#124f9f6742dbf3e75ca7a7b33a0424405e4bb001"
   dependencies:
     edmonds-blossom "^1.0.0"
 

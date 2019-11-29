@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ISBPairing, ISBPairings, ISBPlayers, pairPlayers } from "bkgm-swiss";
+import {
+  ISBPairing,
+  ISBPairings,
+  ISBPlayers,
+  pairPlayers,
+  rankPlayers,
+  calcOMV
+} from "bkgm-swiss";
 import { RootState } from "../../app/reducers";
 import { Player } from "../players/playersSlice";
 
@@ -28,7 +35,7 @@ const makeMatch = (roundID: number, pairing: ISBPairing): Match => {
 export type Rounds = Match[];
 
 const makeISBPlayers = (players: Player[], rounds: Rounds): ISBPlayers => {
-  return players.map(player => {
+  const playersWithStats = players.map(player => {
     const playerMatches = rounds.filter(match =>
       match.pairing.includes(player.ID)
     );
@@ -70,6 +77,11 @@ const makeISBPlayers = (players: Player[], rounds: Rounds): ISBPlayers => {
       omv: 0
     };
   });
+
+  return playersWithStats.map(pl => ({
+    ...pl,
+    omv: calcOMV(playersWithStats, pl)
+  }));
 };
 
 export type State = {
@@ -114,7 +126,7 @@ const roundsSlice = createSlice({
 });
 
 export const selectRankedPlayer = (state: RootState) =>
-  makeISBPlayers(state.players, state.rounds.rounds);
+  rankPlayers(makeISBPlayers(state.players, state.rounds.rounds));
 
 export const selectCurrentRound = (state: RootState): Rounds =>
   state.rounds.rounds.filter(
