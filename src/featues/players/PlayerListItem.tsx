@@ -19,11 +19,6 @@ interface IProps {
 export default function PlayerListItem({ player, removePlayer }: IProps) {
   return (
     <ListItem>
-      <ListItemAvatar>
-        <Avatar>
-          <PlayerIcon />
-        </Avatar>
-      </ListItemAvatar>
       <ListItemText primary={player.name} />
       <ListItemSecondaryAction>
         <IconButton

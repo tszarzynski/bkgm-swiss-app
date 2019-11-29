@@ -8,19 +8,18 @@ import {
 import { ISBPairing, ISBPairings, ISBPlayer, ISBPlayers } from "bkgm-swiss";
 import React from "react";
 import RoundListeItem from "./RoundListItem";
+import { Players, Player } from "../players/playersSlice";
+import { Round, Match } from "./roundsSlice";
 
 interface IProps {
-  players: ISBPlayers;
-  pairings: ISBPairings;
+  players: Players;
+  round: Round;
 }
 
-export default function RoundList({ players, pairings }: IProps) {
-  const getPlayer = (pr: number) => players.find(p => p.ID === pr);
-  const pairs = pairings.map(([pr1, pr2]: ISBPairing): [
-    ISBPlayer,
-    ISBPlayer
-  ] => {
-    return [getPlayer(pr1)!, getPlayer(pr2)!];
+export default function RoundList({ players, round }: IProps) {
+  const getPlayer = (pr: number): Player => players.find(p => p.ID === pr)!;
+  const names = round.map(({ pairing }: Match): [string, string] => {
+    return [getPlayer(pairing[0]).name, getPlayer(pairing[1]).name];
   });
 
   return (
@@ -31,8 +30,8 @@ export default function RoundList({ players, pairings }: IProps) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {pairs.map((pair, index) => (
-          <RoundListeItem key={index} pair={pair} />
+        {round.map((match, index) => (
+          <RoundListeItem key={index} match={match} names={names[index]} />
         ))}
       </TableBody>
     </Table>

@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ISBPlayers } from "bkgm-swiss";
 
-let initialState: ISBPlayers = [];
+export type Player = {
+  ID: number;
+  name: string;
+};
+
+export type Players = Player[];
+
+let initialState: Players = [];
 
 let nextPlayerId = 0;
 const playersSlice = createSlice({
@@ -13,12 +20,7 @@ const playersSlice = createSlice({
         const { ID, name } = payload;
         state.push({
           ID,
-          name,
-          gamesWon: 0,
-          matchesWon: 0,
-          matchesLost: 0,
-          omv: 0,
-          opponents: []
+          name
         });
       },
       prepare(name: string) {
