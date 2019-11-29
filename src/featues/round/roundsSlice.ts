@@ -10,14 +10,20 @@ export type Match = {
   roundID: number;
   pairing: ISBPairing;
   result: [number, number];
+  hasBye: boolean;
 };
 
-const makeMatch = (roundID: number, pairing: ISBPairing): Match => ({
-  roundID,
-  ID: nextMatchId++,
-  pairing,
-  result: [0, 0]
-});
+const makeMatch = (roundID: number, pairing: ISBPairing): Match => {
+  const hasBye = pairing.includes(-1);
+
+  return {
+    roundID,
+    ID: nextMatchId++,
+    pairing,
+    result: [0, hasBye ? -1 : 0],
+    hasBye
+  };
+};
 
 export type Rounds = Match[];
 
@@ -86,10 +92,10 @@ const roundsSlice = createSlice({
       const pairings: ISBPairings = pairPlayers(
         makeISBPlayers(players, state.rounds)
       );
+
       const matches = pairings.map(pairing => makeMatch(roundID, pairing));
 
       state.rounds = state.rounds.concat(matches);
-      //return [...state, ...matches];
     },
     updateMatch(state, { payload }: PayloadAction<{ matchToUpdate: Match }>) {
       const { matchToUpdate } = payload;
@@ -112,7 +118,7 @@ export const selectRankedPlayer = (state: RootState) =>
 
 export const selectCurrentRound = (state: RootState): Rounds =>
   state.rounds.rounds.filter(
-    match => match.roundID === state.rounds.currentRound
+    match => match.roundID === state.rounds.currentRound && !match.hasBye
   );
 
 export const selectCurrentRoundNumber = (state: RootState): number =>
