@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ISBPlayers } from "bkgm-swiss";
 
 export type Player = {
   ID: number;
   name: string;
 };
 
-export type Players = Player[];
-
-let initialState: Players = [];
+let initialState: Player[] = [];
 
 let nextPlayerId = 0;
 const playersSlice = createSlice({
@@ -31,6 +28,9 @@ const playersSlice = createSlice({
       const { playerID } = payload;
 
       return state.filter(player => player.ID !== playerID);
+    },
+    reset() {
+      return initialState;
     }
   }
 });

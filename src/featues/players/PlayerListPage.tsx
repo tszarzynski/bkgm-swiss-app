@@ -4,7 +4,8 @@ import {
   CssBaseline,
   makeStyles,
   Typography,
-  Button
+  Button,
+  Divider
 } from "@material-ui/core";
 import TitleIcon from "@material-ui/icons/AccountCircle";
 import React from "react";
@@ -44,7 +45,7 @@ export default function PlayerListPage() {
           <TitleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Add Players
+          Players
         </Typography>
         <div className={classes.form}>
           <PlayerList
@@ -56,6 +57,7 @@ export default function PlayerListPage() {
               dispatch(addPlayer(name));
             }}
           />
+          <Divider variant="middle" />
           <Button
             fullWidth
             variant="contained"

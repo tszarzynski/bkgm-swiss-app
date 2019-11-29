@@ -8,7 +8,7 @@ import {
 import TitleIcon from "@material-ui/icons/EmojiEvents";
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../app/reducers";
+import { selectRankedPlayer } from "../round/roundsSlice";
 import RankingList from "./RankingList";
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RankingListPage() {
   const classes = useStyles();
-  const { players } = useSelector((state: RootState) => state);
+  const players = useSelector(selectRankedPlayer);
 
   return (
     <Container component="main" maxWidth="xs">

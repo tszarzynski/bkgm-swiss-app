@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Container,
   CssBaseline,
   makeStyles,
@@ -7,9 +8,14 @@ import {
 } from "@material-ui/core";
 import TitleIcon from "@material-ui/icons/List";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/reducers";
 import RoundList from "./RoundList";
+import {
+  addRound,
+  selectCurrentRound,
+  selectCurrentRoundNumber
+} from "./roundsSlice";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -19,7 +25,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -29,7 +36,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function RoundListPage() {
   const classes = useStyles();
-  const { players, rounds } = useSelector((state: RootState) => state);
+  const { players } = useSelector((state: RootState) => state);
+  const rounds = useSelector(selectCurrentRound);
+  const roundNumber = useSelector(selectCurrentRoundNumber);
+  const dispatch = useDispatch();
+
+  if (!rounds.length) return null;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -39,13 +51,19 @@ export default function RoundListPage() {
           <TitleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Round
+          {"Round " + roundNumber}
         </Typography>
         <div className={classes.form}>
-          <RoundList
-            players={players}
-            pairings={rounds[rounds.length - 1] || []}
-          />
+          <RoundList players={players} round={rounds} />
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            disabled={players.length < 2}
+            onClick={() => dispatch(addRound({ players }))}
+          >
+            Next Round
+          </Button>
         </div>
       </div>
     </Container>

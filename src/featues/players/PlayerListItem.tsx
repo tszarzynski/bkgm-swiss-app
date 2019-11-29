@@ -1,18 +1,15 @@
-import { ISBPlayer } from "bkgm-swiss";
-import React from "react";
 import {
   IconButton,
-  ListItemAvatar,
   ListItem,
-  Avatar,
-  ListItemText,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  ListItemText
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import PlayerIcon from "@material-ui/icons/AccountCircle";
+import React from "react";
+import { Player } from "./playersSlice";
 
 interface IProps {
-  player: ISBPlayer;
+  player: Player;
   removePlayer: (id: number) => void;
 }
 

@@ -1,11 +1,11 @@
 import { List } from "@material-ui/core";
-import { ISBPlayers } from "bkgm-swiss";
 import React from "react";
 import PlayerForm from "./PlayerForm";
 import PlayerListItem from "./PlayerListItem";
+import { Player } from "./playersSlice";
 
 interface IProps {
-  players: ISBPlayers;
+  players: Player[];
   addPlayer: (name: string) => void;
   removePlayer: (id: number) => void;
 }

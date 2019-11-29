@@ -5,15 +5,14 @@ import {
   TableHead,
   TableRow
 } from "@material-ui/core";
-import { ISBPairing, ISBPairings, ISBPlayer, ISBPlayers } from "bkgm-swiss";
 import React from "react";
+import { Player } from "../players/playersSlice";
 import RoundListeItem from "./RoundListItem";
-import { Players, Player } from "../players/playersSlice";
-import { Round, Match } from "./roundsSlice";
+import { Match, Rounds } from "./roundsSlice";
 
 interface IProps {
-  players: Players;
-  round: Round;
+  players: Player[];
+  round: Rounds;
 }
 
 export default function RoundList({ players, round }: IProps) {
@@ -26,7 +25,10 @@ export default function RoundList({ players, round }: IProps) {
     <Table aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell align="right">Name</TableCell>
+          <TableCell align="right">Player 1</TableCell>
+
+          <TableCell align="left">Player 2</TableCell>
+          <TableCell align="right"></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
