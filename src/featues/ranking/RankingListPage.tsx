@@ -8,7 +8,10 @@ import {
 import TitleIcon from "@material-ui/icons/EmojiEvents";
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectRankedPlayer } from "../round/roundsSlice";
+import {
+  selectRankedPlayers,
+  selectCurrentRoundNumber
+} from "../round/roundsSlice";
 import RankingList from "./RankingList";
 
 const useStyles = makeStyles(theme => ({
@@ -30,7 +33,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function RankingListPage() {
   const classes = useStyles();
-  const players = useSelector(selectRankedPlayer);
+  const players = useSelector(selectRankedPlayers);
+  const roundNumber = useSelector(selectCurrentRoundNumber);
+
+  if (roundNumber === 0) return null;
 
   return (
     <Container component="main" maxWidth="xs">

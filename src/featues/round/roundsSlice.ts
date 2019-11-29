@@ -125,7 +125,7 @@ const roundsSlice = createSlice({
   }
 });
 
-export const selectRankedPlayer = (state: RootState) =>
+export const selectRankedPlayers = (state: RootState) =>
   rankPlayers(makeISBPlayers(state.players, state.rounds.rounds));
 
 export const selectCurrentRound = (state: RootState): Rounds =>

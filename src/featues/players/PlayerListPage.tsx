@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/reducers";
 import PlayerList from "./PlayerList";
 import { addPlayer, removePlayer } from "./playersSlice";
-import { addRound } from "../round/roundsSlice";
+import { addRound, selectCurrentRoundNumber } from "../round/roundsSlice";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -36,6 +36,9 @@ export default function PlayerListPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { players } = useSelector((state: RootState) => state);
+  const roundNumber = useSelector(selectCurrentRoundNumber);
+
+  if (roundNumber > 0) return null;
 
   return (
     <Container component="main" maxWidth="xs">
