@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Player } from 'bkgm-swiss';
 
-export type Player = {
-  ID: number;
-  name: string;
-};
 
 let initialState: Player[] = [];
-
+// TODO: change that
 let nextPlayerId = 0;
+
 const playersSlice = createSlice({
   name: "players",
   initialState,
@@ -21,7 +19,7 @@ const playersSlice = createSlice({
         });
       },
       prepare(name: string) {
-        return { payload: { name, ID: nextPlayerId++ } };
+        return { payload: { name, ID: ++nextPlayerId } };
       }
     },
     removePlayer(state, { payload }: PayloadAction<{ playerID: number }>) {
@@ -35,5 +33,5 @@ const playersSlice = createSlice({
   }
 });
 
-export const { addPlayer, removePlayer } = playersSlice.actions;
+export const { addPlayer, removePlayer, reset } = playersSlice.actions;
 export default playersSlice.reducer;

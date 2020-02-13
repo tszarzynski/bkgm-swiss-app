@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
-import { Player } from "./playersSlice";
+import { Player } from "bkgm-swiss";
 
 interface IProps {
   player: Player;

@@ -1,7 +1,8 @@
 import { Button, TableCell, TableRow, TextField } from "@material-ui/core";
+import { Match } from "bkgm-swiss";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Match, updateMatch } from "./roundsSlice";
+import { updateMatch } from "./roundsSlice";
 
 interface IProps {
   match: Match;

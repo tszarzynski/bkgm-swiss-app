@@ -5,12 +5,12 @@ import {
   TableHead,
   TableRow
 } from "@material-ui/core";
-import { ISBPlayers } from "bkgm-swiss";
+import { PlayerWithStats } from "bkgm-swiss";
 import React from "react";
 import RankingListItem from "./RankingListItem";
 
 interface IProps {
-  players: ISBPlayers;
+  players: PlayerWithStats[];
 }
 
 export default function RankingList({ players }: IProps) {
@@ -21,7 +21,9 @@ export default function RankingList({ players }: IProps) {
           <TableCell>Rank</TableCell>
           <TableCell align="right">Name</TableCell>
           <TableCell align="right">Wins</TableCell>
-          <TableCell align="right">Loses</TableCell>
+          <TableCell align="right">Points</TableCell>
+          <TableCell align="right">OMV</TableCell>
+
         </TableRow>
       </TableHead>
       <TableBody>

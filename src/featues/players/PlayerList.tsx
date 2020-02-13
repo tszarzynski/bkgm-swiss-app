@@ -2,7 +2,7 @@ import { List } from "@material-ui/core";
 import React from "react";
 import PlayerForm from "./PlayerForm";
 import PlayerListItem from "./PlayerListItem";
-import { Player } from "./playersSlice";
+import { Player } from "bkgm-swiss";
 
 interface IProps {
   players: Player[];

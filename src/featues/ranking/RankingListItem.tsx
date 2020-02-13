@@ -1,9 +1,9 @@
-import { ISBPlayer } from "bkgm-swiss";
-import React from "react";
 import { TableCell, TableRow } from "@material-ui/core";
+import { PlayerWithStats } from "bkgm-swiss";
+import React from "react";
 
 interface IProps {
-  player: ISBPlayer;
+  player: PlayerWithStats;
   rank: number;
 }
 
@@ -15,7 +15,8 @@ export default function RankingListItem({ player, rank }: IProps) {
       </TableCell>
       <TableCell align="right">{player.name}</TableCell>
       <TableCell align="right">{player.matchesWon}</TableCell>
-      <TableCell align="right">{player.matchesLost}</TableCell>
+      <TableCell align="right">{player.gamesWon}</TableCell>
+      <TableCell align="right">{player.omv}</TableCell>
     </TableRow>
   );
 }

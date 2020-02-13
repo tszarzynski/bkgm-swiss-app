@@ -1,24 +1,17 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow
-} from "@material-ui/core";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 import React from "react";
-import { Player } from "../players/playersSlice";
 import RoundListeItem from "./RoundListItem";
-import { Match, Rounds } from "./roundsSlice";
+import { Match, Player } from "bkgm-swiss";
 
 interface IProps {
   players: Player[];
-  round: Rounds;
+  round: Match[];
 }
 
 export default function RoundList({ players, round }: IProps) {
   const getPlayer = (pr: number): Player => players.find(p => p.ID === pr)!;
   const names = round.map(({ pairing }: Match): [string, string] => {
-    return [getPlayer(pairing[0]).name, getPlayer(pairing[1]).name];
+    return [getPlayer(pairing[0]).name!, getPlayer(pairing[1]).name!];
   });
 
   return (
